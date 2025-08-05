@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - FutsalGo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #062f15, #66bb6a);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .brand-name {
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #22c55e;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+         .btn-primary {
+            background: linear-gradient(135deg, #08180e, #16a34a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 78, 41, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .btn-secondary:hover {
+            background: #12341f;
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(12, 42, 23, 0.9), rgba(22, 163, 74, 0.8)), 
+                        url('https://i.pinimg.com/736x/c5/c3/9d/c5c39d2cad298bb49a07d2849b55890f.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 80px;
+            color: white;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 18px;
+            margin-top: 1rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb-separator {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .breadcrumb-current {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 6rem 0;
+            background: #f9fafb;
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Calendar Sidebar */
+        .calendar-sidebar {
+            background: linear-gradient(135deg, #0d391d, #16a34a);
+            padding: 2rem 0;
+            color: white;
+        }
+
+        .year-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+        }
+
+        .year-nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .year-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .current-year {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .month-list {
+            list-style: none;
+        }
+
+        .month-item {
+            padding: 1rem 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-weight: 500;
+        }
+
+        .month-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .month-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-left-color: white;
+            font-weight: 600;
+        }
+
+        /* Calendar Main */
+        .calendar-main {
+            padding: 2rem;
+            background: white;
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-title {
+            color: #0f3b1f;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .calendar-day-header {
+            background: #f9fafb;
+            color: #6b7280;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-day {
+            background: white;
+            color: #374151;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .calendar-day:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: #174a2a;
+        }
+
+        .calendar-day.today {
+            background: #154426;
+            color: white;
+            font-weight: 700;
+        }
+
+        .calendar-day.selected {
+            background: #0c401f;
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: #9ca3af;
+        }
+
+        /* Booking Panel */
+        .booking-panel {
+            position: fixed;
+            right: -450px;
+            top: 80px;
+            width: 450px;
+            height: calc(100vh - 80px);
+            background: white;
+            border-left: 1px solid #e5e7eb;
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-panel.active {
+            right: 0;
+        }
+
+        .booking-panel-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(135deg, #0f301b, #16a34a);
+            color: white;
+        }
+
+        .booking-panel-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-panel-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .booking-panel-content {
+            padding: 2rem;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .time-slot {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            color: #374151;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            border-color: #0e351d;
+            color: #13552b;
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .time-slot.selected {
+            background: #0a3219;
+            border-color: #114624;
+            color: white;
+        }
+
+        .time-slot.booked {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #d1d5db;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            color: #374151;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-select {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            color: #1a1a1a;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #22c55e;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .btn-book {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 16px;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(1, 90, 34, 0.4);
+        }
+
+        .btn-book:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #22c55e;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .booking-container {
+                grid-template-columns: 250px 1fr;
+            }
+            
+            .booking-panel {
+                width: 400px;
+                right: -400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-sidebar {
+                display: none;
+            }
+            
+            .booking-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .calendar-day {
+                padding: 1rem;
+                min-height: 60px;
+                font-size: 1rem;
+            }
+            
+            .calendar-title {
+                font-size: 1.5rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Navigation */
+        .nav.active {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav.active .nav-link {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav.active .nav-link:last-child {
+            border-bottom: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .booking-container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span class="logo-text">FG</span>
+                    </div>
+                    <span class="brand-name">FUTSALGO</span>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="courts.html" class="nav-link">Courts</a>
+                    <a href="booking.html" class="nav-link active">Booking</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="booking.html" class="btn btn-primary">Book Now</a>
+                    <a href="login.html" class="btn btn-secondary">Login</a>
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Book Your Court</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Booking</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <!-- Calendar Sidebar -->
+                <div class="calendar-sidebar">
+                    <div class="year-navigation">
+                        <button class="year-nav-btn" id="prevYear">‹</button>
+                        <span class="current-year" id="currentYear">2025</span>
+                        <button class="year-nav-btn" id="nextYear">›</button>
+                    </div>
+                    
+                    <ul class="month-list" id="monthList">
+                        <li class="month-item" data-month="0">JANUARY</li>
+                        <li class="month-item" data-month="1">FEBRUARY</li>
+                        <li class="month-item" data-month="2">MARCH</li>
+                        <li class="month-item" data-month="3">APRIL</li>
+                        <li class="month-item" data-month="4">MAY</li>
+                        <li class="month-item" data-month="5">JUNE</li>
+                        <li class="month-item active" data-month="6">JULY</li>
+                        <li class="month-item" data-month="7">AUGUST</li>
+                        <li class="month-item" data-month="8">SEPTEMBER</li>
+                        <li class="month-item" data-month="9">OCTOBER</li>
+                        <li class="month-item" data-month="10">NOVEMBER</li>
+                        <li class="month-item" data-month="11">DECEMBER</li>
+                    </ul>
+                </div>
+                
+                <!-- Calendar Main -->
+                <div class="calendar-main">
+                    <div class="calendar-header">
+                        <h2 class="calendar-title" id="calendarTitle">JULY 2025</h2>
+                    </div>
+                    
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Panel -->
+    <div class="booking-panel" id="bookingPanel">
+        <div class="booking-panel-header">
+            <h3 class="booking-panel-title">Book Your Court</h3>
+            <p class="booking-panel-subtitle">Select your preferred time slot</p>
+        </div>
+        
+        <div class="booking-panel-content">
+            <div class="time-slots" id="timeSlots">
+                <div class="time-slot" data-time="08:00">08:00 AM</div>
+                <div class="time-slot" data-time="09:00">09:00 AM</div>
+                <div class="time-slot" data-time="10:00">10:00 AM</div>
+                <div class="time-slot" data-time="11:00">11:00 AM</div>
+                <div class="time-slot" data-time="12:00">12:00 PM</div>
+                <div class="time-slot" data-time="13:00">01:00 PM</div>
+                <div class="time-slot" data-time="14:00">02:00 PM</div>
+                <div class="time-slot" data-time="15:00">03:00 PM</div>
+                <div class="time-slot" data-time="16:00">04:00 PM</div>
+                <div class="time-slot" data-time="17:00">05:00 PM</div>
+                <div class="time-slot" data-time="18:00">06:00 PM</div>
+                <div class="time-slot" data-time="19:00">07:00 PM</div>
+            </div>
+            
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" name="phone" placeholder="Enter your phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Court Type</label>
+                    <select class="form-select" name="courtType" required>
+                        <option value="">Select court type</option>
+                        <option value="alpha">Court Alpha - Premium ($50/hr)</option>
+                        <option value="beta">Court Beta - Popular ($40/hr)</option>
+                        <option value="gamma">Court Gamma - Training ($35/hr)</option>
+                        <option value="delta">Court Delta - Multi-Sport ($30/hr)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-book" id="bookBtn" disabled>Select Date & Time</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <span class="logo-text">FG</span>
+                        </div>
+                        <span class="brand-name" style="color: white;">FUTSALGO</span>
+                    </div>
+                    <p style="color: #9ca3af; line-height: 1.6;">
+                        Premium futsal facilities with world-class courts and professional services for players and teams of all levels.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courts.html">Courts</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Court Rental</a></li>
+                        <li><a href="#">Equipment Rental</a></li>
+                        <li><a href="#">Training Programs</a></li>
+                        <li><a href="#">Tournaments</a></li>
+                        <li><a href="#">Corporate Events</a></li>
+                    </ul>
+                </div>
+                
+         <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div style="color: #9ca3af;">
+                        <p style="margin-bottom: 0.5rem;">📍 WARD 3 ,Singadurbar Kathmandu </p>
+                        <p style="margin-bottom: 0.5rem;">📍 WARD 3 ,Singadurbar Kathmandu </p>
+                        <p style="margin-bottom: 0.5rem;">📞 977-98XXXXXXXX</p>
+                        <p>✉️ info@futsalgo.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FutsalGo. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/9779812345678" class="whatsapp-float" target="_blank" title="Chat with FutsalGo on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.106"/>
+  </svg>
+</a>
+
+    <script>
+        // Calendar functionality
+        class FutsalGoBooking {
+            constructor() {
+                this.currentDate = new Date();
+                this.currentYear = 2025;
+                this.currentMonth = 6; // July (0-indexed)
+                this.selectedDate = null;
+                this.selectedTime = null;
+                
+                this.monthNames = [
+                    'JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+                    'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'
+                ];
+                
+                this.dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                
+                this.init();
+            }
+            
+            init() {
+                this.renderCalendar();
+                this.bindEvents();
+                this.setTodayAsSelected();
+            }
+            
+            bindEvents() {
+                // Year navigation
+                document.getElementById('prevYear').addEventListener('click', () => {
+                    this.currentYear--;
+                    this.updateYear();
+                });
+                
+                document.getElementById('nextYear').addEventListener('click', () => {
+                    this.currentYear++;
+                    this.updateYear();
+                });
+                
+                // Month selection
+                document.querySelectorAll('.month-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        this.currentMonth = parseInt(e.target.dataset.month);
+                        this.updateActiveMonth();
+                        this.renderCalendar();
+                    });
+                });
+                
+                // Time slot selection
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.addEventListener('click', (e) => {
+                        if (!e.target.classList.contains('booked')) {
+                            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                            e.target.classList.add('selected');
+                            this.selectedTime = e.target.dataset.time;
+                            this.updateBookButton();
+                        }
+                    });
+                });
+                
+                // Booking form
+                document.getElementById('bookingForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleBooking();
+                });
+                
+                // Mobile menu toggle
+                document.getElementById('menuToggle').addEventListener('click', () => {
+                    document.getElementById('nav').classList.toggle('active');
+                });
+            }
+            
+            updateYear() {
+                document.getElementById('currentYear').textContent = this.currentYear;
+                this.renderCalendar();
+            }
+            
+            updateActiveMonth() {
+                document.querySelectorAll('.month-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelector(`[data-month="${this.currentMonth}"]`).classList.add('active');
+                document.getElementById('calendarTitle').textContent = `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
+            }
+            
+            renderCalendar() {
+                const grid = document.getElementById('calendarGrid');
+                grid.innerHTML = '';
+                
+                // Add day headers
+                this.dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    grid.appendChild(dayHeader);
+                });
+                
+                // Get first day of month and number of days
+                const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+                const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                
+                // Adjust for Monday start (0 = Sunday, 1 = Monday, etc.)
+                let startDay = firstDay.getDay();
+                startDay = startDay === 0 ? 6 : startDay - 1;
+                
+                // Add empty cells for previous month
+                for (let i = 0; i < startDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day other-month';
+                    grid.appendChild(emptyDay);
+                }
+                
+                // Add days of current month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = day;
+                    dayElement.dataset.date = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    
+                    // Mark today
+                    if (this.currentYear === 2025 && this.currentMonth === 6 && day === 4) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    dayElement.addEventListener('click', () => {
+                        this.selectDate(dayElement);
+                    });
+                    
+                    grid.appendChild(dayElement);
+                }
+                
+                this.updateActiveMonth();
+            }
+            
+            selectDate(dayElement) {
+                document.querySelectorAll('.calendar-day').forEach(day => {
+                    day.classList.remove('selected');
+                });
+                dayElement.classList.add('selected');
+                this.selectedDate = dayElement.dataset.date;
+                
+                // Show booking panel
+                document.getElementById('bookingPanel').classList.add('active');
+                
+                // Reset time slots
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected', 'booked');
+                });
+                
+                // Randomly mark some slots as booked for demo
+                const randomSlots = Math.floor(Math.random() * 3) + 1;
+                const allSlots = document.querySelectorAll('.time-slot');
+                for (let i = 0; i < randomSlots; i++) {
+                    const randomIndex = Math.floor(Math.random() * allSlots.length);
+                    allSlots[randomIndex].classList.add('booked');
+                }
+                
+                this.selectedTime = null;
+                this.updateBookButton();
+            }
+            
+            setTodayAsSelected() {
+                // Auto-select July 4th as shown in the image
+                setTimeout(() => {
+                    const todayElement = document.querySelector('.calendar-day.today');
+                    if (todayElement) {
+                        this.selectDate(todayElement);
+                    }
+                }, 100);
+            }
+            
+            updateBookButton() {
+                const bookBtn = document.getElementById('bookBtn');
+                if (this.selectedDate && this.selectedTime) {
+                    bookBtn.disabled = false;
+                    bookBtn.textContent = 'Confirm Booking';
+                } else if (this.selectedDate) {
+                    bookBtn.disabled = true;
+                    bookBtn.textContent = 'Select Time Slot';
+                } else {
+                    bookBtn.disabled = true;
+                    bookBtn.textContent = 'Select Date & Time';
+                }
+            }
+            
+            handleBooking() {
+                if (!this.selectedDate || !this.selectedTime) {
+                    alert('Please select a date and time slot');
+                    return;
+                }
+                
+                const formData = new FormData(document.getElementById('bookingForm'));
+                const bookingData = {
+                    date: this.selectedDate,
+                    time: this.selectedTime,
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email'),
+                    courtType: formData.get('courtType')
+                };
+                
+                // Simple validation
+                if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.courtType) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Simulate booking process
+                const courtNames = {
+                    'alpha': 'Court Alpha - Premium',
+                    'beta': 'Court Beta - Popular',
+                    'gamma': 'Court Gamma - Training',
+                    'delta': 'Court Delta - Multi-Sport'
+                };
+                
+                alert(`🎉 Booking Confirmed!\n\nDate: ${this.selectedDate}\nTime: ${this.selectedTime}\nCourt: ${courtNames[bookingData.courtType]}\nPlayer: ${bookingData.name}\n\nThank you for choosing FutsalGo!`);
+                
+                // Reset form and close panel
+                document.getElementById('bookingForm').reset();
+                document.getElementById('bookingPanel').classList.remove('active');
+                
+                // Mark the selected time slot as booked
+                document.querySelector(`[data-time="${this.selectedTime}"]`).classList.add('booked');
+                document.querySelector(`[data-time="${this.selectedTime}"]`).classList.remove('selected');
+                
+                this.selectedTime = null;
+                this.updateBookButton();
+            }
+        }
+        
+        // Initialize booking system when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new FutsalGoBooking();
+            
+            // Header scroll effect
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Close booking panel when clicking outside
+            document.addEventListener('click', (e) => {
+                const bookingPanel = document.getElementById('bookingPanel');
+                
+                if (!bookingPanel.contains(e.target) && !e.target.closest('.calendar-day')) {
+                    bookingPanel.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

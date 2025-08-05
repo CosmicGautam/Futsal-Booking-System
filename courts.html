@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courts - FutsalGo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #062f15, #66bb6a);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .brand-name {
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #22c55e;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1b432a, #16a34a);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+    .btn-primary {
+            background: linear-gradient(135deg, #08180e, #16a34a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 78, 41, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .btn-secondary:hover {
+            background: #12341f;
+            color: white;
+        }
+
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(12, 40, 22, 0.9), rgba(22, 163, 74, 0.8)),
+                        url('https://i.pinimg.com/736x/38/0a/ec/380aec63599199077ff81d1776bb34e5.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 80px;
+            color: white;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 18px;
+            margin-top: 1rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb-separator {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .breadcrumb-current {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Courts Section */
+        .courts-section {
+            padding: 6rem 0;
+            background: #f9fafb;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .courts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .court-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .court-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .court-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .court-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .court-content {
+            padding: 2rem;
+        }
+
+        .court-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .court-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .court-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            background: rgba(34, 197, 94, 0.1);
+            color: #133f23;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .court-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1b4b2c;
+        }
+
+        .price-period {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .court-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #0d3d1e;
+            flex: 1;
+        }
+
+        .btn-outline:hover {
+            background: #22c55e;
+            color: white;
+        }
+
+        /* Facilities Section */
+        .facilities-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .facility-item:hover {
+            border-color: rgba(34, 197, 94, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .facility-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0e2b19, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        .facility-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .facility-description {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #22c55e;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .courts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .facilities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .court-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Navigation */
+        .nav.active {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav.active .nav-link {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav.active .nav-link:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span class="logo-text">FG</span>
+                    </div>
+                    <span class="brand-name">FUTSALGO</span>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="courts.html" class="nav-link active">Courts</a>
+                    <a href="booking.html" class="nav-link">Booking</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                
+                 <div class="header-actions">
+                    <a href="booking.html" class="btn btn-primary">Book Now</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                     <a href="login.html" class="btn btn-secondary">Login</a>
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Our Premium Courts</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Courts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courts Section -->
+    <section class="courts-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Professional Facilities</div>
+                <h2 class="section-title">Choose Your Perfect Court</h2>
+                <p class="section-description">
+                    All our courts meet FIFA standards with premium surfaces and professional lighting for the ultimate futsal experience.
+                </p>
+            </div>
+            
+            <div class="courts-grid">
+                <div class="court-card">
+                    <div class="court-image" style="background-image: url('https://i.pinimg.com/1200x/49/f2/c3/49f2c3ffc541449cb3a05e7e95364afc.jpg');">
+                        <div class="court-badge">Premium</div>
+                    </div>
+                    <div class="court-content">
+                        <h3 class="court-title">Court Alpha</h3>
+                        <p class="court-description">
+                            Our flagship court with premium artificial turf, professional lighting, and climate control. Perfect for competitive matches and tournaments.
+                        </p>
+                        <div class="court-features">
+                            <span class="feature-tag">FIFA Standard</span>
+                            <span class="feature-tag">Climate Control</span>
+                            <span class="feature-tag">HD Lighting</span>
+                            <span class="feature-tag">Sound System</span>
+                        </div>
+                        <div class="court-price">
+                            <div>
+                                <span class="price-text">$50</span>
+                                <span class="price-period">per hour</span>
+                            </div>
+                        </div>
+                        <div class="court-actions">
+                            <a href="#" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <div class="court-image" style="background-image: url('https://i.pinimg.com/1200x/79/d1/29/79d129948cc454bcf63debf8fe8dbb74.jpg');">
+                        <div class="court-badge">Popular</div>
+                    </div>
+                    <div class="court-content">
+                        <h3 class="court-title">Court Beta</h3>
+                        <p class="court-description">
+                            High-quality court with excellent drainage system and professional markings. Ideal for regular training and casual games.
+                        </p>
+                        <div class="court-features">
+                            <span class="feature-tag">Professional Turf</span>
+                            <span class="feature-tag">LED Lighting</span>
+                            <span class="feature-tag">Drainage System</span>
+                            <span class="feature-tag">Spectator Area</span>
+                        </div>
+                        <div class="court-price">
+                            <div>
+                                <span class="price-text">$40</span>
+                                <span class="price-period">per hour</span>
+                            </div>
+                        </div>
+                        <div class="court-actions">
+                            <a href="#" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <div class="court-image" style="background-image: url('https://i.pinimg.com/736x/b8/2a/a9/b82aa93ea3f5371cfa38e01553af4ce4.jpg');">
+                        <div class="court-badge">Training</div>
+                    </div>
+                    <div class="court-content">
+                        <h3 class="court-title">Court Gamma</h3>
+                        <p class="court-description">
+                            Specially designed for training sessions with coaching areas and equipment storage. Perfect for skill development programs.
+                        </p>
+                        <div class="court-features">
+                            <span class="feature-tag">Training Equipment</span>
+                            <span class="feature-tag">Coaching Area</span>
+                            <span class="feature-tag">Storage Space</span>
+                            <span class="feature-tag">Video Analysis</span>
+                        </div>
+                        <div class="court-price">
+                            <div>
+                                <span class="price-text">$35</span>
+                                <span class="price-period">per hour</span>
+                            </div>
+                        </div>
+                        <div class="court-actions">
+                            <a href="#" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <div class="court-image" style="background-image: url('https://i.pinimg.com/1200x/51/03/c7/5103c79f5f8c6ed9ae65db01363524c4.jpg');">
+                        <div class="court-badge">Multi-Sport</div>
+                    </div>
+                    <div class="court-content">
+                        <h3 class="court-title">Court Delta</h3>
+                        <p class="court-description">
+                            Versatile multi-sport court suitable for futsal, basketball, and volleyball. Great for diverse training and recreational activities.
+                        </p>
+                        <div class="court-features">
+                            <span class="feature-tag">Multi-Sport</span>
+                            <span class="feature-tag">Flexible Layout</span>
+                            <span class="feature-tag">Equipment Included</span>
+                            <span class="feature-tag">Group Friendly</span>
+                        </div>
+                        <div class="court-price">
+                            <div>
+                                <span class="price-text">$30</span>
+                                <span class="price-period">per hour</span>
+                            </div>
+                        </div>
+                        <div class="court-actions">
+                            <a href="#" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Complete Facilities</div>
+                <h2 class="section-title">Everything You Need</h2>
+                <p class="section-description">
+                    Our comprehensive facilities ensure you have everything needed for the perfect futsal experience.
+                </p>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Changing Rooms</h3>
+                    <p class="facility-description">Clean, spacious changing rooms with lockers and benches</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Equipment Rental</h3>
+                    <p class="facility-description">Professional futsal balls, jerseys, and protective gear</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Climate Control</h3>
+                    <p class="facility-description">Optimal temperature and air quality for comfort</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Live Streaming</h3>
+                    <p class="facility-description">Record and stream your matches with HD cameras</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Spectator Area</h3>
+                    <p class="facility-description">Comfortable seating for friends and family</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10,8 16,12 10,16 10,8"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Sound System</h3>
+                    <p class="facility-description">Professional audio system for announcements and music</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Free Parking</h3>
+                    <p class="facility-description">Ample parking space for all players and visitors</p>
+                </div>
+
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12V7a7 7 0 1 1 14 0v5"></path>
+                            <rect x="2" y="12" width="20" height="8" rx="2"></rect>
+                        </svg>
+                    </div>
+                    <h3 class="facility-title">Security</h3>
+                    <p class="facility-description">24/7 security and CCTV monitoring for safety</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <span class="logo-text">FG</span>
+                        </div>
+                        <span class="brand-name" style="color: white;">FUTSALGO</span>
+                    </div>
+                    <p style="color: #9ca3af; line-height: 1.6;">
+                        Premium futsal facilities with world-class courts and professional services for players and teams of all levels.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courts.html">Courts</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Court Rental</a></li>
+                        <li><a href="#">Equipment Rental</a></li>
+                        <li><a href="#">Training Programs</a></li>
+                        <li><a href="#">Tournaments</a></li>
+                        <li><a href="#">Corporate Events</a></li>
+                    </ul>
+                </div>
+                
+                 <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div style="color: #9ca3af;">
+                        <p style="margin-bottom: 0.5rem;">📍 WARD 3 ,Singadurbar Kathmandu </p>
+                        <p style="margin-bottom: 0.5rem;">📍 WARD 3 ,Singadurbar Kathmandu </p>
+                        <p style="margin-bottom: 0.5rem;">📞 977-98XXXXXXXX</p>
+                        <p>✉️ info@futsalgo.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FutsalGo. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+<a href="https://wa.me/9779812345678" class="whatsapp-float" target="_blank" title="Chat with FutsalGo on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.106"/>
+  </svg>
+</a>
+
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('.header');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add loading animation to court cards
+        const courtCards = document.querySelectorAll('.court-card');
+        courtCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+
+        // Add loading animation to facility items
+        const facilityItems = document.querySelectorAll('.facility-item');
+        facilityItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 500 + (index * 100));
+        });
+    </script>
+</body>
+</html>
